@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name"></string>
+    <string name="enter_category">Category</string>
+    <string name="enter_allocated_budget">Allocated budget</string>
+</resources>
