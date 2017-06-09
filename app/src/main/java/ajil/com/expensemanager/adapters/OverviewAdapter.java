@@ -1,18 +1,17 @@
-package ajil.com.expensemanager;
+package ajil.com.expensemanager.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import static android.view.View.GONE;
-import static android.view.View.VISIBLE;
+import ajil.com.expensemanager.R;
+import ajil.com.expensemanager.fragments.OverviewFragment;
+import ajil.com.expensemanager.helpers.NotifyEditState;
+import ajil.com.expensemanager.models.BudgetModel;
 
 /**
  * Created by ajilo on 26-05-2017.
@@ -21,9 +20,12 @@ import static android.view.View.VISIBLE;
 public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.CustomViewHolder>{
     private ArrayList<BudgetModel> budgetModels;
     private Context context;
-    public OverviewAdapter(ArrayList<BudgetModel> budgetModels, Context context) {
+    private NotifyEditState editState;
+
+    public OverviewAdapter(ArrayList<BudgetModel> budgetModels, Context context, OverviewFragment overviewFragment) {
         this.budgetModels = budgetModels;
         this.context = context;
+        editState = overviewFragment;
     }
 
     @Override
@@ -35,26 +37,6 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.Custom
     @Override
     public void onBindViewHolder(final CustomViewHolder holder, int position) {
 
-        holder.ovCatEdit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                holder.ovCatText.setVisibility(VISIBLE);
-                holder.ovCatLabel.setVisibility(GONE);
-                holder.ovCatEdit.setVisibility(GONE);
-                holder.ovCatDone.setVisibility(VISIBLE);
-            }
-        });
-
-        holder.ovCatDone.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                holder.ovCatText.setVisibility(GONE);
-                holder.ovCatLabel.setVisibility(VISIBLE);
-                holder.ovCatEdit.setVisibility(VISIBLE);
-                holder.ovCatDone.setVisibility(GONE);
-            }
-        });
-
     }
 
     @Override
@@ -64,17 +46,10 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.Custom
 
 
     public class CustomViewHolder extends RecyclerView.ViewHolder {
-        ImageView ovCatEdit , ovBudgetPlus, ovBudgetMinus , ovCatDone;
-        TextView ovCatLabel , ovCatText , ovBudgetText;
+
         public CustomViewHolder(View itemView) {
             super(itemView);
-            ovCatEdit = (ImageView) itemView.findViewById(R.id.ovCategoryEdit);
-            ovCatLabel = (TextView) itemView.findViewById(R.id.ovCategoryLabel);
-            ovBudgetPlus = (ImageView) itemView.findViewById(R.id.ovBudgetPlus);
-            ovBudgetMinus = (ImageView) itemView.findViewById(R.id.ovBudgetMinus);
-            ovCatText = (TextView) itemView.findViewById(R.id.ovCategoryText);
-            ovBudgetText = (TextView) itemView.findViewById(R.id.ovBudgetText);
-            ovCatDone = (ImageView) itemView.findViewById(R.id.ovCategoryDone);
+
         }
     }
 }

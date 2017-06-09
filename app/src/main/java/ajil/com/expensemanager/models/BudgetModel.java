@@ -1,4 +1,4 @@
-package ajil.com.expensemanager;
+package ajil.com.expensemanager.models;
 
 /**
  * Created by ajilo on 26-05-2017.
